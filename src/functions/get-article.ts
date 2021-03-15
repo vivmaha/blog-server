@@ -10,7 +10,6 @@ type GetArticleResult = {
 
 export const handler = createApiHandler(
   async (event: APIGatewayProxyEvent): Promise<GetArticleResult> => {
-    console.log(`event = [${JSON.stringify(event)}].`);
     if (event.pathParameters === null) {
       throw new Error("pathParameters is missing.");
     }

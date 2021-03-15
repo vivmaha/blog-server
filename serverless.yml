@@ -39,7 +39,6 @@ functions:
           path: articles
           method: get
           cors: true
-  # TODO - Should /articles and /article/{id} be combined?
   getArticle:
     handler: src/functions/get-article.handler
     events:
