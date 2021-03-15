@@ -5,7 +5,7 @@ Server for Blog
 ## Deployment
 
 The production server is hosted on AWS, and gets deployed automatically upon
-a push to master (TODO).
+a push to master.
 
 You can also deploy to the dev stack for testing:
 
@@ -22,7 +22,6 @@ You can also deploy to the dev stack for testing:
   `npm run sls -- config credentials --provider aws --key [key] --secret [secret]`
 
 - `npm run sls -- deploy --stage dev`
-- `npm run sls -- deploy --stage prod`
 
 ## Development
 
