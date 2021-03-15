@@ -5,7 +5,12 @@ import { putArticleSummary } from "../src/tables/articles-table";
 import { Series } from "../src/model/series";
 import { putSeries } from "../src/tables/series-table";
 
-// Replace these with the values from your stack.
+/**
+ * Replace these with the values from your stack.
+ *
+ * As long as I manually deploy to prod, don't check-in prod values here, since
+ * that'll make it way to easy to accidentally overwrite prod.
+ **/
 process.env["DEFAULT_BUCKET_NAME"] = "blog-dev-defaultbucket-19jwyl91pofzb";
 process.env["AWS_REGION"] = "us-west-2";
 process.env["ARTICLES_TABLE_NAME"] = "blog-dev-ArticlesTable-11UL8NKR2FBNQ";

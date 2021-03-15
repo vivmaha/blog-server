@@ -21,7 +21,8 @@ You can also deploy to the dev stack for testing:
 
   `npm run sls -- config credentials --provider aws --key [key] --secret [secret]`
 
-- `npm run sls -- deploy`
+- `npm run sls -- deploy --stage dev`
+- `npm run sls -- deploy --stage prod`
 
 ## Development
 
