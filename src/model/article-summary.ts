@@ -1,4 +1,4 @@
-export type Article = {
+export type ArticleSummary = {
   /**
    * Unique.
    * Human readable since it is used for article URL.
@@ -11,6 +11,7 @@ export type Article = {
    * The timezone is always zero UTC offset, as denoted by the suffix "Z"
    **/
   date: string;
-};
 
-export type ArticleKey = Pick<Article, "id">;
+  title: string;
+  preview: string;
+};

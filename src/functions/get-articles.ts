@@ -1,5 +1,5 @@
 import { DynamoDBClient, ScanCommand } from "@aws-sdk/client-dynamodb";
-import { Article } from "../model/article";
+import { ArticleSummary } from "../model/article-summary";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 import { createApiHandler } from "../aws/api-gateway/aws-api";
 
@@ -12,7 +12,7 @@ const getEnvironmentVariable = (key: string) => {
 };
 
 type GetArticlesResult = {
-  articles: Article[];
+  articles: ArticleSummary[];
 };
 
 export const handler = createApiHandler(
@@ -33,7 +33,9 @@ export const handler = createApiHandler(
       );
     }
     return {
-      articles: queryResult.Items.map((item) => unmarshall(item) as Article),
+      articles: queryResult.Items.map(
+        (item) => unmarshall(item) as ArticleSummary
+      ),
     };
   }
 );
