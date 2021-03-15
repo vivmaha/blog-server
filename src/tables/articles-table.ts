@@ -18,6 +18,7 @@ export const getArticles = async (): Promise<ArticleSummary[]> => {
     // to address this.
     new ScanCommand({
       TableName: getTableName(),
+      FilterExpression: "attribute_not_exists(isHidden)",
     })
   );
   if (result.Items === undefined) {
@@ -28,7 +29,9 @@ export const getArticles = async (): Promise<ArticleSummary[]> => {
       "I didn't anticipate the table getting this large. Time for pagination."
     );
   }
-  return result.Items.map((item) => unmarshall(item) as ArticleSummary);
+  return result.Items.map(
+    (item) => unmarshall(item) as ArticleSummary
+  ).sort((a, b) => (a.date < b.date ? 1 : -1));
 };
 
 export const getArticleSummary = async (

@@ -841,4 +841,25 @@ export const articleContents = new Map([
       ],
     ],
   ],
+  [
+    "about",
+    [
+      [
+        {
+          type: "html",
+          content: `                
+                    <p>I'm <a href="https://www.linkedin.com/in/vivmaha">Vivek Maharajh</a> — a Developer and UX Designer.</p>
+                    <p>I designed and coded this site to:</p>
+                    <ul>                    
+                        <li>Practice UX Design</li>
+                        <li>Stay in touch with the dev client and server ecosystems</li>
+                    </ul>
+                    <p>Being able to organize my notes on this site was a nice bonus.</p>
+                    <p><a href="https://github.com/vivmaha/blog">Client code on GitHub</a></p>
+                    <p><a href="https://github.com/vivmaha/blog">Server code on GitHub</a></p>
+                `,
+        },
+      ],
+    ],
+  ],
 ]);

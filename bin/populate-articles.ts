@@ -31,7 +31,7 @@ process.env["ARTICLES_TABLE_NAME"] = "blog-dev-ArticlesTable-11UL8NKR2FBNQ";
       id: "cultural-awareness",
       title: "Cultural Awareness",
       date: "2016-10-08T07:00:00.000Z",
-      articleSet: {
+      series: {
         id: "global-ux",
         title: "Global UX",
         nextArticle: {
@@ -46,13 +46,9 @@ process.env["ARTICLES_TABLE_NAME"] = "blog-dev-ArticlesTable-11UL8NKR2FBNQ";
       id: "how-culture-became-part-of-ux",
       title: "How Culture Became Part of UX",
       date: "2016-10-16T07:00:00.000Z",
-      articleSet: {
+      series: {
         id: "global-ux",
         title: "Global UX",
-        previousArticle: {
-          id: "cultural-awareness",
-          title: "Cultural Awareness",
-        },
         nextArticle: {
           id: "global-design",
           title: "Global Design",
@@ -65,13 +61,9 @@ process.env["ARTICLES_TABLE_NAME"] = "blog-dev-ArticlesTable-11UL8NKR2FBNQ";
       id: "global-design",
       title: "Global Design",
       date: "2016-10-22T07:00:00.000Z",
-      articleSet: {
+      series: {
         id: "global-ux",
         title: "Global UX",
-        previousArticle: {
-          id: "how-culture-became-part-of-ux",
-          title: "How Culture Became Part of UX",
-        },
         nextArticle: {
           id: "global-user-research",
           title: "Global User Research",
@@ -84,13 +76,9 @@ process.env["ARTICLES_TABLE_NAME"] = "blog-dev-ArticlesTable-11UL8NKR2FBNQ";
       id: "global-user-research",
       title: "Global User Research",
       date: "2016-11-06T07:00:00.000Z",
-      articleSet: {
+      series: {
         id: "global-ux",
         title: "Global UX",
-        previousArticle: {
-          id: "global-design",
-          title: "Global Design",
-        },
         nextArticle: {
           id: "language-power",
           title: "Language and Power",
@@ -103,13 +91,9 @@ process.env["ARTICLES_TABLE_NAME"] = "blog-dev-ArticlesTable-11UL8NKR2FBNQ";
       id: "language-power",
       title: "Language and Power",
       date: "2016-11-13T08:00:00.000Z",
-      articleSet: {
+      series: {
         id: "global-ux",
         title: "Global UX",
-        previousArticle: {
-          id: "global-user-research",
-          title: "Global User Research",
-        },
         nextArticle: {
           id: "developing-for-emerging-economies",
           title: "Design for Emerging Economies",
@@ -122,13 +106,9 @@ process.env["ARTICLES_TABLE_NAME"] = "blog-dev-ArticlesTable-11UL8NKR2FBNQ";
       id: "developing-for-emerging-economies",
       title: "Design for Emerging Economies",
       date: "2016-11-19T08:00:00.000Z",
-      articleSet: {
+      series: {
         id: "global-ux",
         title: "Global UX",
-        previousArticle: {
-          id: "language-power",
-          title: "Language and Power",
-        },
         nextArticle: {
           id: "cross-cultural-teams",
           title: "Cross-Cultural Teams",
@@ -141,16 +121,19 @@ process.env["ARTICLES_TABLE_NAME"] = "blog-dev-ArticlesTable-11UL8NKR2FBNQ";
       id: "cross-cultural-teams",
       title: "Cross-Cultural Teams",
       date: "2016-11-25T08:00:00.000Z",
-      articleSet: {
+      series: {
         id: "global-ux",
         title: "Global UX",
-        previousArticle: {
-          id: "developing-for-emerging-economies",
-          title: "Design for Emerging Economies",
-        },
       },
       preview:
         "Working on a global product is usually accompanied with a global workforce. This post explores the dynamics of diverse work spaces.",
+    },
+    {
+      id: "about",
+      title: "About",
+      date: "2017-09-25T08:00:00.000Z",
+      preview: "",
+      isHidden: true,
     },
   ];
 
