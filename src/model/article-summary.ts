@@ -14,4 +14,17 @@ export type ArticleSummary = {
 
   title: string;
   preview: string;
+
+  articleSet?: {
+    id: string;
+    title: string;
+    nextArticle?: {
+      id: string;
+      title: string;
+    };
+    previousArticle?: {
+      id: string;
+      title: string;
+    };
+  };
 };

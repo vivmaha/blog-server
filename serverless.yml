@@ -18,6 +18,7 @@ provider:
   lambdaHashingVersion: 20201221
   environment:
     ARTICLES_TABLE_NAME: !Ref ArticlesTable
+    DEFAULT_BUCKET_NAME: !Ref DefaultBucket
   iam:
     role:
       statements:
@@ -25,6 +26,10 @@ provider:
           Action:
             - dynamodb:*
           Resource: !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${AWS::StackName}-*
+        - Effect: Allow
+          Action:
+            - s3:*
+          Resource: !Sub arn:aws:s3:::${AWS::StackName}-*
 
 functions:
   getArticles:
@@ -34,6 +39,18 @@ functions:
           path: articles
           method: get
           cors: true
+  # TODO - Should /articles and /article/{id} be combined?
+  getArticle:
+    handler: src/functions/get-article.handler
+    events:
+      - http:
+          path: article/{id}
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
 
 resources:
   Resources:
@@ -47,3 +64,8 @@ resources:
         KeySchema:
           - AttributeName: id
             KeyType: HASH
+    DefaultBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        VersioningConfiguration:
+          Status: Enabled
