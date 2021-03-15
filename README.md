@@ -1,3 +1,5 @@
+[![CI](https://github.com/vivmaha/blog-server/actions/workflows/main.yml/badge.svg)](https://github.com/vivmaha/blog-server/actions/workflows/main.yml)
+
 # blog-server
 
 Server for Blog
