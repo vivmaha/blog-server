@@ -16,6 +16,15 @@ provider:
     shouldStartNameWithService: true
   # Delete this line after upgrading to v3.0.0 since it will be the default
   lambdaHashingVersion: 20201221
+  environment:
+    ARTICLES_TABLE_NAME: !Ref ArticlesTable
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:*
+          Resource: !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${AWS::StackName}-*
 
 functions:
   getArticles:
@@ -25,3 +34,16 @@ functions:
           path: articles
           method: get
           cors: true
+
+resources:
+  Resources:
+    ArticlesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        BillingMode: PAY_PER_REQUEST
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
