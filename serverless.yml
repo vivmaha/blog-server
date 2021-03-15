@@ -83,3 +83,19 @@ resources:
       Properties:
         VersioningConfiguration:
           Status: Enabled
+    PublicBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        VersioningConfiguration:
+          Status: Enabled
+    PublicBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: !Ref PublicBucket
+        PolicyDocument:
+          Statement:
+            - Effect: Allow
+              Action:
+                - s3:GetObject
+              Principal: "*"
+              Resource: !Sub ${PublicBucket.Arn}/*

@@ -158,8 +158,6 @@ process.env["SERIES_TABLE_NAME"] = "blog-dev-SeriesTable-13HGG8FMK47VB";
     {
       id: "global-ux",
       title: "Global UX",
-      backgroundImageUrl:
-        "https://notesbyvmedia.blob.core.windows.net/images/car-on-map-web-optimized.jpg",
       introduction: `A literature review.\n\nThis was part of my coursework at the University of Washington. Specifically, HCDE 512 with Manuela Noske.`,
       articles: getArticlesFromIds([
         "cultural-awareness",
@@ -174,8 +172,6 @@ process.env["SERIES_TABLE_NAME"] = "blog-dev-SeriesTable-13HGG8FMK47VB";
     {
       id: "home",
       title: "Notes by V",
-      backgroundImageUrl:
-        "https://notesbyvmedia.blob.core.windows.net/images/pen-idea-bulb-paper-web-optimized.jpg",
       introduction: "A place to store my notes.",
       articles: getArticlesFromIds([
         "cross-cultural-teams",
