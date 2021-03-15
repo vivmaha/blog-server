@@ -2,11 +2,14 @@ import { ArticleSummary } from "../src/model/article-summary";
 import { putArticleContent } from "../src/buckets/default-bucket";
 import { articleContents } from "./article-contents";
 import { putArticleSummary } from "../src/tables/articles-table";
+import { Series } from "../src/model/series";
+import { putSeries } from "../src/tables/series-table";
 
 // Replace these with the values from your stack.
 process.env["DEFAULT_BUCKET_NAME"] = "blog-dev-defaultbucket-19jwyl91pofzb";
 process.env["AWS_REGION"] = "us-west-2";
 process.env["ARTICLES_TABLE_NAME"] = "blog-dev-ArticlesTable-11UL8NKR2FBNQ";
+process.env["SERIES_TABLE_NAME"] = "blog-dev-SeriesTable-13HGG8FMK47VB";
 
 /**
  * Pushes some sample articles to the stack
@@ -137,17 +140,66 @@ process.env["ARTICLES_TABLE_NAME"] = "blog-dev-ArticlesTable-11UL8NKR2FBNQ";
     },
   ];
 
-  await Promise.all(
-    articles.map((article) =>
-      Promise.all([
-        putArticleSummary(article),
-        putArticleContent(
-          article.id,
-          JSON.stringify(articleContents.get(article.id), null, 2)
-        ),
-      ])
-    )
-  );
+  const getArticlesFromIds = (ids: string[]) =>
+    ids.map((id) => {
+      const article = articles.find((a) => a.id === id);
+      if (article === undefined) {
+        throw new Error(`Article not found. Id = [${id}].`);
+      }
+      return article;
+    });
+
+  const series: Series[] = [
+    {
+      id: "global-ux",
+      title: "Global UX",
+      backgroundImageUrl:
+        "https://notesbyvmedia.blob.core.windows.net/images/car-on-map-web-optimized.jpg",
+      introduction: `A literature review.\n\nThis was part of my coursework at the University of Washington. Specifically, HCDE 512 with Manuela Noske.`,
+      articles: getArticlesFromIds([
+        "cultural-awareness",
+        "how-culture-became-part-of-ux",
+        "global-design",
+        "global-user-research",
+        "language-power",
+        "developing-for-emerging-economies",
+        "cross-cultural-teams",
+      ]),
+    },
+    {
+      id: "home",
+      title: "Notes by V",
+      backgroundImageUrl:
+        "https://notesbyvmedia.blob.core.windows.net/images/pen-idea-bulb-paper-web-optimized.jpg",
+      introduction: "A place to store my notes.",
+      articles: getArticlesFromIds([
+        "cross-cultural-teams",
+        "developing-for-emerging-economies",
+        "language-power",
+        "global-user-research",
+        "global-design",
+        "how-culture-became-part-of-ux",
+        "cultural-awareness",
+        "information-architecture-101",
+        "search-engine-optimization-101",
+      ]),
+    },
+  ];
+
+  await Promise.all([
+    Promise.all(
+      articles.map((article) =>
+        Promise.all([
+          putArticleSummary(article),
+          putArticleContent(
+            article.id,
+            JSON.stringify(articleContents.get(article.id), null, 2)
+          ),
+        ])
+      )
+    ),
+    Promise.all(series.map(putSeries)),
+  ]);
 })().then(
   () => console.log("done"),
   (e) => console.log(e)

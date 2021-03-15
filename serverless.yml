@@ -18,6 +18,7 @@ provider:
   lambdaHashingVersion: 20201221
   environment:
     ARTICLES_TABLE_NAME: !Ref ArticlesTable
+    SERIES_TABLE_NAME: !Ref SeriesTable
     DEFAULT_BUCKET_NAME: !Ref DefaultBucket
   iam:
     role:
@@ -32,13 +33,6 @@ provider:
           Resource: !Sub arn:aws:s3:::${AWS::StackName}-*
 
 functions:
-  getArticles:
-    handler: src/functions/get-articles.handler
-    events:
-      - http:
-          path: articles
-          method: get
-          cors: true
   getArticle:
     handler: src/functions/get-article.handler
     events:
@@ -50,10 +44,31 @@ functions:
             parameters:
               paths:
                 id: true
+  getSeries:
+    handler: src/functions/get-series.handler
+    events:
+      - http:
+          path: series/{id}
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
 
 resources:
   Resources:
     ArticlesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        BillingMode: PAY_PER_REQUEST
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+    SeriesTable:
       Type: AWS::DynamoDB::Table
       Properties:
         AttributeDefinitions:
