@@ -20,7 +20,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: server-assets
-          path: .serverless/
+          path: ./
   deploy:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -35,4 +35,4 @@ jobs:
           aws-access-key-id: AKIA3K2BK53R7YEC576A
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
-      - run: npm run sls -- deploy --stage=prod --package .
+      - run: npm run sls -- deploy --stage=prod --package .serverless
